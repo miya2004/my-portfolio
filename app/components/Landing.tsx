@@ -35,7 +35,7 @@ export default function Landing() {
             "
           />
 
-          {/* Handwritten Text Top */}
+          
           <p className="absolute top-[18%] left-9 text-black text-xl font-handwrite z-20">
             Hi. Since you're new here,
             </p>
