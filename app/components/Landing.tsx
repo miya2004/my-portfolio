@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Landing() {
   return (
-    <section className="min-h-screen w-full bg-[#e9dfd2] px-6 pt-2 relative">
+    <section className="min-h-screen w-full bg-[#F5F5F5] px-6 pt-2 relative">
 
       {/* ========= NAVBAR ========= */}
       <nav className="w-full flex justify-center mt-2 mb-2">
@@ -37,7 +37,7 @@ export default function Landing() {
 
           
           <p className="absolute top-[18%] left-9 text-black text-xl font-handwrite z-20">
-            Hi. Since you're new here,
+            Hi. Since you&apos;re new here,
             </p>
 
             <p className="absolute top-[28%] right-20 text-black text-xl font-handwrite z-20">
