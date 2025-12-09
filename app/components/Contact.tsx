@@ -70,7 +70,9 @@ export default function Contact() {
 
         {/* Say hiii */}
         <div
-          ref={(el) => (bubbles.current[0] = el)}
+          ref={(el) => {
+            bubbles.current[0] = el;
+          }}
           onClick={() => setOpen(true)}
           className="cursor-pointer absolute left-[8%] top-20 -rotate-[18deg] bg-[#F9E374] px-10 py-5 rounded-[999px] shadow-xl text-[40px] font-bold"
         >
@@ -79,7 +81,9 @@ export default function Contact() {
 
         {/* Leopard icon */}
         <div
-          ref={(el) => (bubbles.current[1] = el)}
+          ref={(el) => {
+            bubbles.current[1] = el;
+          }}
           onClick={() => setOpen(true)}
           className="cursor-pointer absolute left-[5%] bottom-[15%] w-28 h-28 rounded-full shadow-xl overflow-hidden flex items-center justify-center"
         >
@@ -88,7 +92,9 @@ export default function Contact() {
 
         {/* Reach out */}
         <div
-          ref={(el) => (bubbles.current[2] = el)}
+          ref={(el) => {
+            bubbles.current[2] = el;
+          }}
           onClick={() => setOpen(true)}
           className="cursor-pointer bg-[#CBE4A1] text-black text-[55px] font-semibold px-16 py-6 rounded-[999px] shadow-xl hover:scale-105 transition"
         >
@@ -97,7 +103,9 @@ export default function Contact() {
 
         {/* Let's chat */}
         <div
-          ref={(el) => (bubbles.current[3] = el)}
+          ref={(el) => {
+            bubbles.current[3] = el;
+          }}
           onClick={() => setOpen(true)}
           className="cursor-pointer bg-[#7D1318] text-white text-[55px] font-bold px-16 py-8 rounded-[999px] shadow-xl -rotate-[3deg]"
         >
@@ -106,7 +114,9 @@ export default function Contact() {
 
         {/* Send a message */}
         <div
-          ref={(el) => (bubbles.current[4] = el)}
+          ref={(el) => {
+            bubbles.current[4] = el;
+          }}
           onClick={() => setOpen(true)}
           className="cursor-pointer bg-[#D53382] text-white text-[55px] font-bold px-24 py-8 rounded-[999px] shadow-xl"
         >
@@ -115,7 +125,9 @@ export default function Contact() {
 
         {/* Email bubble */}
         <div
-          ref={(el) => (bubbles.current[5] = el)}
+          ref={(el) => {
+            bubbles.current[5] = el;
+          }}
           onClick={() => setOpen(true)}
           className="cursor-pointer absolute right-[6%] bottom-[12%] w-36 h-36 bg-[#A8EAF4] rounded-full shadow-xl flex items-center justify-center text-6xl"
         >
