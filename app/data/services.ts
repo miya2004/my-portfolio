@@ -1,8 +1,16 @@
 export const services = [
-    "Short-form Video Editing",
-    "Photography",
-    "UGC Content",
-    "Brand Strategy",
-    "Creative Direction",
-  ];
-  
+  {
+    title: "UGC",
+    description: "Leverage authentic content to..."
+  },
+  {
+    title: "Photography",
+    description:
+      "I capture high-quality images that tell your brand's story..."
+  },
+  {
+    title: "Short-Form Video",
+    description:
+      "I produce engaging short-form videos that capture attention..."
+  },
+];
