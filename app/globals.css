@@ -5,8 +5,13 @@
   --foreground: #171717;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --font-brush: '';
   --font-sans: var(--font-inter);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.font-brush {
+  font-family: var(--font-brush);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,4 +28,36 @@ body {
 }
 .font-handwrite {
   font-family: var(--font-handwrite);
+}
+/* === Paper Texture Layer === */
+.bg-paper {
+  position: relative;
+}
+
+.bg-paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("/paper.png");
+  background-size: cover;
+  background-repeat: repeat;
+  opacity: 0.35; /* adjust grain visibility */
+  mix-blend-mode: multiply; /* makes it blend realistically */
+  z-index: 1;
+}
+.film-shadow {
+  filter: drop-shadow(0px 3px 8px rgba(0,0,0,0.2));
+}
+@keyframes filmScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-filmScroll {
+  animation: filmScroll 20s linear infinite;
 }

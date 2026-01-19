@@ -1,44 +1,83 @@
 export const services = [
   {
-    title: "UGC",
+    title: "Human-Centered Design",
     summary:
-      "I leverage authentic creator-led content to build trust and engagement with your audience.",
-    details:
-      "From concept, scripting, to delivering polished edits, I craft social-first assets that feel native to the platforms your audience loves. Each deliverable is designed to build credibility for your brand and drive measurable actions.",
-    tags: ["Authenticity", "Engagement", "Trust", "Community"],
-    image: "/miya.png",
-    palette: {
-      shell: "from-rose-500 to-rose-400",
-      body: "bg-rose-200",
-      accent: "text-rose-800",
-    },
+      "I leverage authentic content created by users to build trust and engagement with your audience.",
+    tags: [
+      "Authenticity",
+      "Engagement",
+      "Trust",
+      "Community Building",
+      "Organic Reach",
+    ],
+    image: "/ugc.jpg",
+    bg: "bg-[#F7AEC8]", // pink
   },
+
   {
-    title: "Photography",
+    title: "UX Strategy & Product Design",
     summary:
-      "High-quality, story-driven imagery that evokes emotion and keeps your brand cohesive across touchpoints.",
-    details:
-      "Whether it's lifestyle, product, or event coverage, I scout props, art-direct sets, and deliver gallery-ready selects with retouching built in. Every shoot is guided by your goals, mood boards, and the feelings you want to leave behind.",
-    tags: ["Art Direction", "Retouching", "Editing"],
-    image: "/window.svg",
-    palette: {
-      shell: "from-cyan-700 to-cyan-500",
-      body: "bg-cyan-200",
-      accent: "text-cyan-900",
-    },
+      "I capture high-quality images that tell your brand's story and create emotional impact.",
+    tags: [
+      "High-Quality Images",
+      "Visual Appeal",
+      "Brand Storytelling",
+      "Professional Photography",
+    ],
+    image: "/photo.jpg",
+    bg: "bg-[#B3D2D3]", // soft teal
   },
+
   {
-    title: "Short-Form Video",
+    title: "UI Design & Visual Systems",
     summary:
-      "Fast-moving videos optimized for Reels, TikTok, and YT Shorts that capture attention in seconds.",
-    details:
-      "I storyboard hooks, test pacing, add captions, and layer bespoke sound design so each piece is ready for publication. Motion graphics, styling, and on-screen talent are part of the production process whenever they amplify the story.",
-    tags: ["Story Arcs", "Motion", "Sound Design"],
-    image: "/globe.svg",
-    palette: {
-      shell: "from-emerald-700 to-emerald-500",
-      body: "bg-emerald-200",
-      accent: "text-emerald-900",
-    },
+      "Engaging short-form videos that communicate your message and boost engagement.",
+    tags: [
+      "Video Production",
+      "Social Media Engagement",
+      "Creative Storytelling",
+    ],
+    image: "/video.jpg",
+    bg: "bg-[#A6C774]", // green
+  },
+
+  {
+    title: "Prototyping & Interaction Design",
+    summary:
+      "Social strategies that maximize reach and conversions using creative execution.",
+    tags: ["Research & Insights", "Brand Voice", "Creative Direction"],
+    image: "/strategy.jpg",
+    bg: "bg-[#EFE08A]", // light yellow
+  },
+
+  // ⭐ NEW CARD 5
+  {
+    title: "Branding & Visual Identity",
+    summary:
+      "Testing real user behaviors to ensure your product is intuitive, accessible, and optimized for seamless experience.",
+    tags: [
+      "User Research",
+      "A/B Testing",
+      "Accessibility",
+      "Task Flows",
+      "Heuristic Evaluation",
+    ],
+    image: "/usability.jpg", // add this image to /public
+    bg: "bg-[#D2C2F0]", // soft lavender
+  },
+
+  // ⭐ NEW CARD 6
+  {
+    title: "Graphic Design & Print Collateral",
+    summary:
+      "Beyond digital design, I also create print-ready assets such as menu cards, posters, brochures, packaging, and promotional materials that align with the brand and elevate communication.",
+    tags: [
+      "Design Tokens",
+      "Component Libraries",
+      "Brand Consistency",
+      "Developer Handoff",
+    ],
+    image: "/design-system.jpg", // add this image to /public
+    bg: "bg-[#F4CFA1]", // warm peach
   },
 ];

@@ -1,28 +1,28 @@
 export const projects = [
   {
     title: "FOMO APP",
-    img: "/projects/caravan.jpg",
+    img: "/fomo.jpg",
     tags: ["Front-End Developer", "Ui/UX Design", "User ", "Content Strategy"],
     website: "https://…",
     instagram: "https://…"
   },
   {
     title: "Easy Fin",
-    img: "/projects/ojai.jpg",
+    img: "/budgetapp.jpg",
     tags: ["UGC", "Photography", "Short-Form Video", "Content Strategy"],
     website: "https://…",
     instagram: "https://…"
   },
   {
     title: "Pet App",
-    img: "/projects/inc.jpg",
-    tags: ["Social Media Management", "Photography", "Short-Form Video", "Content Strategy"],
+    img: "/pet app.jpg",
+    tags: ["UI Design", "Front-End", "Content Strategy"],
     website: "https://…",
     instagram: "https://…"
   },
   {
     title: "Ume bakery",
-    img: "/projects/blueshift.jpg",
+    img: "/bakery.jpg",
     tags: ["UGC", "Photography", "Short-Form Video", "Content Strategy"],
     website: "https://…",
     instagram: "https://…"

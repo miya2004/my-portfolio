@@ -3,192 +3,180 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useLayoutEffect, useRef } from "react";
-import { services } from "../data/services";
-import { projects } from "../data/projects";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { services } from "../data/services";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Services() {
-  const containerRef = useRef<HTMLElement | null>(null);
-  const cardsRef = useRef<HTMLElement[]>([]);
-  const featuredCardsRef = useRef<HTMLDivElement[]>([]);
+  const serviceRefs = useRef<HTMLDivElement[]>([]);
 
   useLayoutEffect(() => {
-    const cards = [...cardsRef.current, ...featuredCardsRef.current];
+    const cards = serviceRefs.current;
 
-    cards.forEach((card, i) => {
+    const pinTriggers: ScrollTrigger[] = [];
+    const fadeTriggers: ScrollTrigger[] = [];
+
+    cards.forEach((card, index) => {
       if (!card) return;
+      const isLastCard = index === cards.length - 1;
 
-      gsap.fromTo(
-        card,
-        { x: i % 2 === 0 ? -200 : 200, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            end: "top 40%",
-            scrub: true,
-          },
-        }
+      /** 📌 PIN EACH CARD UNTIL THE NEXT SECTION STARTS */
+      pinTriggers.push(
+        ScrollTrigger.create({
+          trigger: card,
+          start: "top top",
+          endTrigger: "#featured-work", // <— STOP BEFORE NEXT SECTION
+          end: "top top",
+          pin: true,
+          pinSpacing: isLastCard,
+        })
+      );
+
+      /** 🎨 Fade in animation */
+      fadeTriggers.push(
+        gsap.fromTo(
+          card,
+          { y: 150, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+            },
+          }
+        ).scrollTrigger!
       );
     });
+
+    return () => {
+      [...pinTriggers, ...fadeTriggers].forEach((t) => t?.kill());
+    };
   }, []);
 
   return (
     <>
-      <section ref={containerRef} className="px-6 py-24 bg-[#F5F5F5]">
-        <div className="max-w-6xl mx-auto">
-          <p className="text-sm uppercase tracking-[0.2em] text-white">Services</p>
-          <h2 className="text-5xl font-bold text-white drop-shadow-md">What I craft</h2>
+      {/* ======================= SERVICES SECTION ======================= */}
+      <section
+        id="services-section"
+        className="relative w-full bg-[#F8F6E9] px-0"
+      >
+        <div
+          className="
+            w-full
+            min-h-full
+            bg-[#4C3837]
+            rounded-t-[48px]
+            relative
+            pb-0
+          "
+        >
 
-          <div className="relative mt-20 pb-20">
-            {services.map((service, i) => {
-              const offset = i === 0 ? 0 : -120;
-              return (
-                <article
-                  key={service.title}
-                  ref={(el) => {
-                    if (el) cardsRef.current[i] = el;
-                  }}
-                  style={{
-                    marginTop: offset,
-                    zIndex: services.length - i,
-                  }}
-                  className={`group relative rounded-4xl shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden transition-all duration-500 ${service.palette.body}`}
-                >
-                  <div className="absolute inset-x-8 -top-6 h-8 rounded-t-3xl bg-white shadow-xl opacity-90" />
-                  <div className={`absolute inset-0 bg-linear-to-br ${service.palette.shell} opacity-0 group-hover:opacity-30 transition-opacity duration-500`} />
+          {/* ======= FOLDER TAB ======= */}
+          <div
+            className="
+              absolute
+              -top-16
+              left-1/4
+              -translate-x-1/2
+              w-[260px]
+              h-[70px]
+              bg-[#4C3837]
+              rounded-t-3xl
+              flex
+              items-center
+              justify-center
+              z-20
+              font-handwrite
+            "
+          >
+            <h2 className="text-3xl font-semibold text-white ">Services</h2>
+          </div>
 
-                  <div className="relative grid gap-10 p-10 lg:grid-cols-[minmax(0,1fr)_280px]">
-                    <div className="flex flex-col gap-6">
-                      <div className="flex items-start justify-between gap-6">
-                        <div>
-                          <p className="text-sm uppercase tracking-[0.3em] text-gray-600">Service</p>
-                          <h3 className="text-5xl font-semibold text-gray-900">
-                            {service.title}
-                          </h3>
-                        </div>
-                        <span className={`text-5xl font-black ${service.palette.accent}`}>
-                          ({String(i + 1).padStart(2, "0")})
+          {/* ======= CONTENT INSIDE FOLDER ======= */}
+          <div className="max-w-6xl mx-auto pt-20 px-6 space-y-40">
+
+            {services.map((service, i) => (
+              <div
+                key={service.title}
+                ref={(el) => {
+                  if (el) serviceRefs.current[i] = el;
+                }}
+                className="
+                  relative
+                  w-full
+                  rounded-3xl
+                  shadow-xl
+                  overflow-hidden
+                  bg-[#F9F5EF]    /* Inner page color */
+                  
+                "
+              >
+                {/* ===== INNER GRID CONTENT ===== */}
+                <div className="grid md:grid-cols-2 gap-10 p-12">
+
+                  {/* LEFT TEXT */}
+                  <div className="flex flex-col gap-6">
+                    <h3 className="text-6xl font-bold text-black">
+                      {service.title}
+                    </h3>
+
+                    <p className="text-lg text-black/80 leading-relaxed">
+                      {service.summary}
+                    </p>
+
+                    <div className="flex flex-wrap gap-3 mt-2">
+                      {service.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="bg-white text-black px-4 py-1 rounded-full shadow-inner text-sm font-medium"
+                        >
+                          {tag}
                         </span>
-                      </div>
-
-                      <p className="text-lg text-gray-800 leading-relaxed">
-                        {service.summary}
-                      </p>
-
-                      <div className="flex flex-wrap gap-3">
-                        {service.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-4 py-1 rounded-full bg-white/70 text-gray-800 text-sm font-medium shadow-inner"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="max-h-20 overflow-hidden group-hover:max-h-72 transition-[max-height] duration-500 ease-out text-base text-gray-700">
-                        <p>{service.details}</p>
-                      </div>
-
-                      <Link
-                        href="#contact"
-                        className="self-start px-5 py-2 rounded-full bg-white text-gray-900 text-sm font-semibold shadow-md border border-gray-200 hover:-translate-y-0.5 transition"
-                      >
-                        Contact
-                      </Link>
+                      ))}
                     </div>
 
-                    <div className="relative h-60 rounded-2xl overflow-hidden shadow-2xl bg-white/60 flex items-center justify-center">
-                      <Image
-                        src={service.image}
-                        alt={service.title}
-                        width={320}
-                        height={240}
-                        className="object-contain w-full h-full"
-                      />
-                    </div>
+                    <Link
+                      href="#contact"
+                      className="
+                        mt-4 inline-flex items-center gap-3
+                        px-6 py-3 bg-white
+                        text-black rounded-full
+                        shadow-md text-lg font-semibold
+                        hover:scale-105 transition
+                      "
+                    >
+                      Contact
+                    </Link>
                   </div>
-                </article>
-              );
-            })}
+
+                  {/* RIGHT IMAGE */}
+                  <div className="relative h-80 rounded-2xl overflow-hidden shadow-2xl">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+
+                {/* SECTION NUMBER */}
+                <p className="text-[72px] font-bold text-black/40 pr-8 pb-6 text-right">
+                  ({String(i + 1).padStart(2, "0")})
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-     {/* FEATURED WORK SECTION */}
-<section className="px-6 py-24 bg-[#e9dfd2]">
-  <h2 className="text-5xl font-bold text-white mb-16">Featured work</h2>
 
-  <div className="grid gap-12 max-w-7xl mx-auto md:grid-cols-2 lg:grid-cols-4">
-    {projects.map((project, i) => (
-      <div
-        key={project.title}
-        ref={(el) => {
-          if (el) featuredCardsRef.current[i] = el;
-        }}
-        className="rounded-3xl bg-white shadow-xl overflow-hidden flex flex-col"
-      >
-        {/* Image */}
-        <div className="relative h-72 w-full">
-          <Image
-            src={project.img}
-            alt={project.title}
-            fill
-            className="object-cover"
-          />
 
-          {/* Floating Tags */}
-          <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="bg-white px-3 py-1 rounded-full text-sm font-medium shadow-md"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Title */}
-        <div className="p-6 border-t border-gray-200">
-          <h3 className="text-xl font-bold text-gray-900">{project.title}</h3>
-
-          {/* Buttons */}
-          <div className="flex gap-3 mt-6">
-            {project.website && (
-              <a
-                href={project.website}
-                target="_blank"
-                className="flex-1 py-2 rounded-lg bg-black text-white text-center font-semibold shadow-md hover:opacity-80 transition"
-              >
-                Website
-              </a>
-            )}
-
-            {project.instagram && (
-              <a
-                href={project.instagram}
-                target="_blank"
-                className="flex-1 py-2 rounded-lg bg-pink-200 text-black text-center font-semibold shadow-md hover:bg-pink-300 transition"
-              >
-                Instagram
-              </a>
-            )}
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
-</section>
 
     </>
   );
